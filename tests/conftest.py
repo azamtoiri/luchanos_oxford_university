@@ -41,7 +41,7 @@ async def run_migrations():
 
 @pytest.fixture(scope="session")
 async def async_session_test():
-    engine = create_async_engine(settings.TEST_DATABASE_URL, future=True, echo=True)
+    engine = create_async_engine(Connection.TEST_DATABASE_URL, future=True, echo=True)
     async_session = sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
     yield async_session
 
@@ -75,7 +75,7 @@ async def client() -> Generator[TestClient, Any, None]:
 
 @pytest.fixture(scope="session")
 async def asyncpg_pool():
-    pool = await asyncpg.create_pool("".join(settings.TEST_DATABASE_URL.split("+asyncpg")))
+    pool = await asyncpg.create_pool("".join(Connection.TEST_DATABASE_URL.split("+asyncpg")))
     yield pool
     pool.close()
 
