@@ -4,9 +4,8 @@ from fastapi.routing import APIRouter
 
 from api.handlers import user_router
 
-#########################
-# BLOCK WITH API ROUTES #
-#########################
+
+# region: API ROUTES
 
 # create instance of the app
 app = FastAPI(title="luchanos-oxford-university")
@@ -17,6 +16,7 @@ main_api_router = APIRouter()
 # set routes to the app instance
 main_api_router.include_router(user_router, prefix="/user", tags=["user"])
 app.include_router(main_api_router)
+# endregion
 
 if __name__ == "__main__":
     # run app on the host and port

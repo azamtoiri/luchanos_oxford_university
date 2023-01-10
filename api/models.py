@@ -4,9 +4,8 @@ import uuid
 from fastapi import HTTPException
 from pydantic import BaseModel, EmailStr, validator
 
-#########################
-# BLOCK WITH API MODELS #
-#########################
+
+# region: API MODELS
 
 LETTER_MATCH_PATTERN = re.compile(r"^[а-яА-Яa-zA-Z\-]+$")
 
@@ -46,3 +45,4 @@ class UserCreate(BaseModel):
                 status_code=422, detail="Surname should contains only letters"
             )
         return value
+# endregion

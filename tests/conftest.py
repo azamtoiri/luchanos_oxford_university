@@ -1,14 +1,17 @@
-from typing import Generator, Any
+import os
 import pytest
+import asyncio
+import asyncpg
+import settings
+
+from main import app
+from db.session import get_db
+
+from typing import Generator, Any
+
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 from starlette.testclient import TestClient
-import settings
-from main import app
-import os
-import asyncio
-from db.session import get_db
-import asyncpg
 
 
 # create async engine for interaction with database
