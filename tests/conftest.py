@@ -2,8 +2,8 @@ import os
 import pytest
 import asyncio
 import asyncpg
-import settings
 
+from settings import Connection
 from main import app
 from db.session import get_db
 
@@ -15,7 +15,7 @@ from starlette.testclient import TestClient
 
 
 # create async engine for interaction with database
-test_engine = create_async_engine(settings.TEST_DATABASE_URL, future=True, echo=True)
+test_engine = create_async_engine(Connection.TEST_DATABASE_URL, future=True, echo=True)
 
 # create session for the interaction with database
 test_async_session = sessionmaker(test_engine, expire_on_commit=False, class_=AsyncSession)

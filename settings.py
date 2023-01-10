@@ -1,15 +1,16 @@
 """File with settings and configs for the project"""
 
-from envparse import Env
+from typing import cast
+from decouple import config
 
-env = Env()
+def _str_config(searching_path: str, *args, **kwargs) -> str:
+    """Convert to string"""
+    obj = config(searching_path, *args, **kwargs)
 
-REAL_DATABASE_URL = env.str(
-    "REAL_DATABASE_URL",
-    default="postgresql+asyncpg://postgres:postgres@0.0.0.0:5432/postgres"
-)  # connect string for the real database
+    return cast(str, obj)
 
-TEST_DATABASE_URL = env.str(
-    "TEST_DATABASE_URL",
-    default="postgresql+asyncpg://postgres_test:postgres_test@0.0.0.0:5433/postgres_test"
-)  # connect string for the test database
+
+class Connection:
+    """Config connection to database"""
+    REAL_DATABASE_URL = _str_config("REAL_DATABASE_URL")
+    TEST_DATABASE_URL = _str_config("TEST_DATABASE_URL")

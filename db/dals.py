@@ -2,9 +2,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from db.models import User
 
-###########################################################
-# BLOCK FOR INTERACTION WITH DATABASE IN BUSINESS CONTEXT #
-###########################################################
+# region: INTERACTION WITH DATABASE IN BUSINESS CONTEXT
 
 
 class UserDAL:
@@ -23,3 +21,5 @@ class UserDAL:
         self.db_session.add(new_user)
         await self.db_session.flush()
         return new_user
+    
+# endregion
