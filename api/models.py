@@ -6,7 +6,6 @@ from pydantic import BaseModel, EmailStr, validator
 
 
 # region: API MODELS
-
 LETTER_MATCH_PATTERN = re.compile(r"^[а-яА-Яa-zA-Z\-]+$")
 
 

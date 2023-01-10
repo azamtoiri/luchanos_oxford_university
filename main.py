@@ -16,6 +16,7 @@ main_api_router = APIRouter()
 # set routes to the app instance
 main_api_router.include_router(user_router, prefix="/user", tags=["user"])
 app.include_router(main_api_router)
+
 # endregion
 
 if __name__ == "__main__":
